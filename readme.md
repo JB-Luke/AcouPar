@@ -1,0 +1,1 @@
+Acoustical Parameters from the Aurora Plugins, compiled as standalone executables. By Angelo Farina
