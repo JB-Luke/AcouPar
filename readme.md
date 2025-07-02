@@ -4,13 +4,19 @@ AcouPar stands for "Acoustical Parameters" and it is the Command Line version of
 The plugin is meant for computing acoustical parameters according to ISO3382-1.
 This command line utility produces exactly the same results of the plugin.
 
-The command line utility is now multiplatform and it can be run both on Windows-based machines and MacOs.
-A pre-compiled version is already avaliable of it can be easily compiled from scratch.
+AcouPar processes a single or a couple (stereo file)  of Impulse Responses in a wavefile providing different approaches:
+ 1. One for single or two independent omnidirectional microphones impulse responses
+ 2. One for ne for WY-Ambix impulse responses
+ 3. One for WY-Ambix impulse responses (omni & figure-of-eight) pressure-velocity (pu)
+ 4. One for binaural impulse responses
 
-We provide 3 versions of AcouPar, each for a different type of stereo impulse response:
-- AcouPar_omni.exe for a single or two independent omnidirectional microphones
-- AcouPar_pu.exe for omni-figure of 8 (pressure-velocity) WY-Ambix impulse responses (NOT for old FuMa WY)
-- AcouPar_BIN.exe for binaural impulse responses
+Other approaches are available but not yet deeply testes such: 
+
+ - One for p-p sound intensity probe
+ - One for pressure-velocity with old FuMa WY
+
+The command line utility is multiplatform and it can be run both on Windows-based machines and MacOs.
+A pre-compiled version is already avaliable of it can be easily compiled from scratch.
 
 ### Output
 The elaboration generate a txt file containing the acoustical parameters values.
@@ -23,22 +29,30 @@ The inside of the file is arranged by parameters and per frequency in a tab-sepa
 
 ```
 Acoupar.exe - ISO3382 Acoustical Parameter File	
-Filename	Par1_freq1  Par1_freq2  ..  Par2_freq1  ..  
+Filename	Par1_freq1  Par1_freq2  ..  Par2_freq1  ..
 file.wav	value       value       ..  value       ..
 ```
 
 Note also that if a file with the same name already exists, the output will be appended to the existing file.
 
 ## How-to Use
-To use the Command Line tool a mono or stereo wavefile is required, and it shall be placed in the same directory of the binary. Then, the following code can be run on Windows systems:
+To use the Command Line tool a mono or stereo wavefile containing the Impulse Responses is required, and it shall be placed in the same directory of the binary. 
+
+The stereo option must be specified and it is one of the following:
+ - `--omni` for omnidirectional microphone(s)
+ - `--wy` for soundfield analysis of WY-ambix
+ - `--pu` for pressure-velocity analysis WY-ambix 
+ - `--bin` for binaural analysis 
+ 
+Then, the following code can be run on Windows systems:
 
 ```
-.\AcouPar_pu.exe filename_WY.wav
+.\AcouPar.exe --pu filename_WY.wav
 ```
 
 While on MacOs:
 ```
-./AcouPar_pu filename_WY.wav
+./AcouPar --pu filename_WY.wav
 ```
 
 A relative path to the wavefile can also be specified. Remember that in case that the filename or its path contains spaces, it is necessary to bracket it with double quotes like:
